@@ -62,6 +62,8 @@ class AuthService {
             ))
         }.body()
 
+        println("[AuthService] Supabase signup response for $email: error=${response.error}, errorDesc=${response.errorDescription}, user=${response.user?.id}")
+
         // Supabase trả lỗi trong body (không dùng HTTP error codes nhất quán)
         if (response.error != null) {
             val msg = response.errorDescription ?: response.error

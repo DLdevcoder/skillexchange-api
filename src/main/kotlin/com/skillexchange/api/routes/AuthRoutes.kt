@@ -80,9 +80,9 @@ fun Route.authRoutes(authService: AuthService) {
             if (req.email.isBlank() || req.token.isBlank())
                 return@post call.respond(HttpStatusCode.BadRequest,
                     RouteApiError(message = "Email và mã OTP không được để trống", code = 400))
-            if (req.token.length != 6 || !req.token.all { it.isDigit() })
+            if (req.token.length !in 6..8 || !req.token.all { it.isDigit() })
                 return@post call.respond(HttpStatusCode.BadRequest,
-                    RouteApiError(message = "Mã OTP phải là 6 chữ số", code = 400))
+                    RouteApiError(message = "Mã OTP phải từ 6 đến 8 chữ số", code = 400))
 
             try {
                 val result = authService.verifyOtp(req.email.trim(), req.token, req.type)

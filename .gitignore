@@ -22,3 +22,4 @@ logs/
 # ─── Docker ──────────────────────────────────────────────────────────
 # (docker-compose.override.yml có thể chứa secrets)
 docker-compose.override.yml
+runDevice.md
